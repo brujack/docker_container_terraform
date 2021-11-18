@@ -1,1 +1,7 @@
-# docker_container_terraform
+# Docker container containing terraform
+
+To build:
+
+```
+make build
+```
