@@ -24,13 +24,6 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && mkdir -p downloads \
     && wget -q -O downloads/terraform_${TERRAFORM_VER}_linux_amd64.zip ${TERRAFORM_URL} \
-    && unzip 'downloads/*.zip' -d /usr/local/bin \
-    && wget -q -O downloads/chruby-${CHRUBY_VER}.tar.gz ${CHRUBY_URL} \
-    && tar -xzvf downloads/chruby-${CHRUBY_VER}.tar.gz -C downloads/ \
-    && cd downloads/chruby-${CHRUBY_VER}/ \
-    && make install \
-    && ruby-install ruby ${RUBY_VER} \
-    && gem install terraspace \
     && unzip downloads/terraform_${TERRAFORM_VER}_linux_amd64.zip -d /usr/local/bin \
     && wget -q -O downloads/tflint_linux_amd64.zip ${TFLINT_URL} \
     && unzip downloads/tflint_linux_amd64.zip -d /usr/local/bin \
@@ -38,6 +31,12 @@ RUN apt-get update \
     && wget -q -O downloads/tfsec-linux-amd64 ${TFSEC_URL} \
     && mv downloads/tfsec-linux-amd64 /usr/local/bin/tfsec \
     && chmod 755 /usr/local/bin/tfsec \
+    && wget -q -O downloads/chruby-${CHRUBY_VER}.tar.gz ${CHRUBY_URL} \
+    && tar -xzvf downloads/chruby-${CHRUBY_VER}.tar.gz -C downloads/ \
+    && cd downloads/chruby-${CHRUBY_VER}/ \
+    && make install \
+    && ruby-install ruby ${RUBY_VER} \
+    && gem install terraspace \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* downloads
