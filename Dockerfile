@@ -2,8 +2,8 @@ FROM ubuntu:focal
 
 ARG TERRAFORM_VER="1.1.2"
 ARG TERRAFORM_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip"
-ARG CHRUBY_VER="0.3.9"
-ARG CHRUBY_URL="https://github.com/postmodern/chruby/archive/v${CHRUBY_VER}.tar.gz"
+ARG RUBY_INSTALL_VER="0.8.3"
+ARG RUBY_INSTALL_URL="https://github.com/postmodern/ruby-install/archive/v${RUBY_INSTALL_VER}.tar.gz"
 ARG RUBY_VER="3.0.2"
 ARG TFLINT_VER="v0.33.1"
 ARG TFLINT_URL="https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VER}/tflint_linux_amd64.zip"
@@ -31,9 +31,9 @@ RUN apt-get update \
     && wget -q -O downloads/tfsec-linux-amd64 ${TFSEC_URL} \
     && mv downloads/tfsec-linux-amd64 /usr/local/bin/tfsec \
     && chmod 755 /usr/local/bin/tfsec \
-    && wget -q -O downloads/chruby-${CHRUBY_VER}.tar.gz ${CHRUBY_URL} \
-    && tar -xzvf downloads/chruby-${CHRUBY_VER}.tar.gz -C downloads/
-WORKDIR /downloads/chruby-${CHRUBY_VER}/
+    && wget -q -O downloads/ruby-install-${RUBY_INSTALL_VER}.tar.gz ${RUBY_INSTALL_URL} \
+    && tar -xzvf downloads/chruby-${RUBY_INSTALL_VER}.tar.gz -C downloads/
+WORKDIR /downloads/chruby-${RUBY_INSTALL_VER}/
 RUN make install \
     && ruby-install ruby ${RUBY_VER} \
     && gem install terraspace:0.7.2 \
