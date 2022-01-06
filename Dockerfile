@@ -32,8 +32,8 @@ RUN apt-get update \
     && mv downloads/tfsec-linux-amd64 /usr/local/bin/tfsec \
     && chmod 755 /usr/local/bin/tfsec \
     && wget -q -O downloads/ruby-install-${RUBY_INSTALL_VER}.tar.gz ${RUBY_INSTALL_URL} \
-    && tar -xzvf downloads/chruby-${RUBY_INSTALL_VER}.tar.gz -C downloads/
-WORKDIR /downloads/chruby-${RUBY_INSTALL_VER}/
+    && tar -xzvf downloads/ruby-install-${RUBY_INSTALL_VER}.tar.gz -C downloads/
+WORKDIR /downloads/ruby-install-${RUBY_INSTALL_VER}/
 RUN make install \
     && ruby-install ruby ${RUBY_VER} \
     && gem install terraspace:0.7.2 \
