@@ -9,6 +9,7 @@ ARG TFLINT_VER="v0.33.1"
 ARG TFLINT_URL="https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VER}/tflint_linux_amd64.zip"
 ARG TFSEC_VER="v0.60.1"
 ARG TFSEC_URL="https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VER}/tfsec-linux-amd64"
+ARG TERRASPACE_VER="0.7.2"
 
 LABEL maintainer="brujack"
 LABEL terraform_version=$TERRAFORM_VER
@@ -36,7 +37,7 @@ RUN apt-get update \
 WORKDIR /downloads/ruby-install-${RUBY_INSTALL_VER}/
 RUN make install \
     && ruby-install ruby ${RUBY_VER} \
-    && gem install terraspace:0.7.2 \
+    && gem install terraspace:${TERRASPACE_VER} \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* downloads
