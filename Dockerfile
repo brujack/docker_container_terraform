@@ -32,11 +32,11 @@ RUN apt-get update \
     && mv downloads/tfsec-linux-amd64 /usr/local/bin/tfsec \
     && chmod 755 /usr/local/bin/tfsec \
     && wget -q -O downloads/chruby-${CHRUBY_VER}.tar.gz ${CHRUBY_URL} \
-    && tar -xzvf downloads/chruby-${CHRUBY_VER}.tar.gz -C downloads/ \
-    && cd downloads/chruby-${CHRUBY_VER}/ \
-    && make install \
+    && tar -xzvf downloads/chruby-${CHRUBY_VER}.tar.gz -C downloads/
+WORKDIR /downloads/chruby-${CHRUBY_VER}/
+RUN make install \
     && ruby-install ruby ${RUBY_VER} \
-    && gem install terraspace \
+    && gem install terraspace:0.7.2 \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* downloads
