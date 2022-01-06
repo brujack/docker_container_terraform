@@ -37,7 +37,10 @@ RUN apt-get update \
 WORKDIR /downloads/ruby-install-${RUBY_INSTALL_VER}/
 RUN make install \
     && ruby-install ruby ${RUBY_VER} \
-    && /opt/rubies/ruby-3.0.2/bin/gem install terraspace:${TERRASPACE_VER} \
+    && ln -s /opt/rubies/ruby-3.0.2/bin/ruby /usr/local/bin/ruby \
+    && ln -s /opt/rubies/ruby-3.0.2/bin/gem /usr/local/bin/gem \
+    && gem install terraspace:${TERRASPACE_VER} \
+    && ln -s /opt/rubies/ruby-3.0.2/lib/ruby/gems/3.0.0/terraspace /usr/local/bin/terraspace \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* downloads
