@@ -7,9 +7,9 @@ ARG RUBY_INSTALL_URL="https://github.com/postmodern/ruby-install/archive/v${RUBY
 ARG RUBY_VER="3.0.2"
 ARG TFLINT_VER="v0.34.1"
 ARG TFLINT_URL="https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VER}/tflint_linux_amd64.zip"
-ARG TFSEC_VER="v0.63.1"
+ARG TFSEC_VER="v1.0.7"
 ARG TFSEC_URL="https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VER}/tfsec-linux-amd64"
-ARG TERRASPACE_VER="0.7.2"
+ARG TERRASPACE_VER="1.1.0"
 
 LABEL maintainer="brujack"
 LABEL terraform_version=$TERRAFORM_VER
