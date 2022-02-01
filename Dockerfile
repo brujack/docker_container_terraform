@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-ARG TERRAFORM_VER="1.1.2"
+ARG TERRAFORM_VER="1.1.4"
 ARG TERRAFORM_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip"
 ARG RUBY_INSTALL_VER="0.8.3"
 ARG RUBY_INSTALL_URL="https://github.com/postmodern/ruby-install/archive/v${RUBY_INSTALL_VER}.tar.gz"
