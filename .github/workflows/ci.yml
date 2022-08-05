@@ -51,7 +51,7 @@ jobs:
         env:
           SYNK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: brujack/terraform:latest
+          image: ${{ env.REGISTRY }}/brujack/terraform:latest
           args: --file=Dockerfile
 
       - name: upload synk result to github code scanning
