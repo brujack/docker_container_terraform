@@ -47,7 +47,7 @@ jobs:
 
       - name: run snyk
         continue-on-error: true
-        uses: synk/actions/docker@master
+        uses: snyk/actions/docker@master
         env:
           SYNK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
