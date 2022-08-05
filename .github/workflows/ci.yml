@@ -42,5 +42,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile
-          # push: true
+          push: true
           tags: ${{ env.REGISTRY }}/brujack/terraform:latest
