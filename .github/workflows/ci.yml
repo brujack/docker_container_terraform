@@ -49,7 +49,7 @@ jobs:
         continue-on-error: true
         uses: snyk/actions/docker@master
         env:
-          SYNK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: ${{ env.REGISTRY }}/brujack/terraform:latest
           args: --file=Dockerfile
