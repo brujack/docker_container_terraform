@@ -54,7 +54,7 @@ jobs:
           image: ${{ env.REGISTRY }}/brujack/terraform:latest
           args: --file=Dockerfile
 
-      - name: upload synk result to github code scanning
+      - name: upload snyk result to github code scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk.sarif
