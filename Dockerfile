@@ -1,15 +1,15 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-ARG TERRAFORM_VER="1.1.7"
+ARG TERRAFORM_VER="1.3.3"
 ARG TERRAFORM_URL="https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip"
 ARG RUBY_INSTALL_VER="0.8.3"
 ARG RUBY_INSTALL_URL="https://github.com/postmodern/ruby-install/archive/v${RUBY_INSTALL_VER}.tar.gz"
 ARG RUBY_VER="3.1.2"
-ARG TFLINT_VER="v0.39.1"
+ARG TFLINT_VER="v0.42.2"
 ARG TFLINT_URL="https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VER}/tflint_linux_amd64.zip"
-ARG TFSEC_VER="v1.27.1"
+ARG TFSEC_VER="v1.28.1"
 ARG TFSEC_URL="https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VER}/tfsec-linux-amd64"
-ARG TERRASPACE_VER="2.1.5"
+ARG TERRASPACE_VER="2.2.2"
 
 LABEL maintainer="brujack"
 LABEL terraform_version=$TERRAFORM_VER
@@ -18,7 +18,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TERRAFORM_VERSION=${TERRAFORM_VER}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-utils shellcheck software-properties-common \
+    && apt-get install -y --no-install-recommends apt-utils gpg-agent shellcheck software-properties-common \
     && apt-get update \
     && add-apt-repository ppa:git-core/ppa -y \
     && apt-get install -y --no-install-recommends apt-utils curl git make tar unzip wget \
