@@ -9,7 +9,6 @@ ARG TFLINT_VER="v0.42.2"
 ARG TFLINT_URL="https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VER}/tflint_linux_amd64.zip"
 ARG TFSEC_VER="v1.28.1"
 ARG TFSEC_URL="https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VER}/tfsec-linux-amd64"
-ARG TERRASPACE_VER="2.2.2"
 
 LABEL maintainer="brujack"
 LABEL terraform_version=$TERRAFORM_VER
@@ -33,15 +32,6 @@ RUN apt-get update \
     && wget -q -O downloads/tfsec-linux-amd64 ${TFSEC_URL} \
     && mv downloads/tfsec-linux-amd64 /usr/local/bin/tfsec \
     && chmod 755 /usr/local/bin/tfsec \
-    && wget -q -O downloads/ruby-install-${RUBY_INSTALL_VER}.tar.gz ${RUBY_INSTALL_URL} \
-    && tar -xzvf downloads/ruby-install-${RUBY_INSTALL_VER}.tar.gz -C downloads/
-WORKDIR /downloads/ruby-install-${RUBY_INSTALL_VER}/
-RUN make install \
-    && ruby-install ruby ${RUBY_VER} \
-    && ln -s /opt/rubies/ruby-${RUBY_VER}/bin/ruby /usr/local/bin/ruby \
-    && ln -s /opt/rubies/ruby-${RUBY_VER}/bin/gem /usr/local/bin/gem \
-    && gem install terraspace:${TERRASPACE_VER} \
-    && ln -s /opt/rubies/ruby-${RUBY_VER}/lib/ruby/gems/3.0.0/terraspace /usr/local/bin/terraspace \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* downloads
